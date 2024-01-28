@@ -8,7 +8,7 @@ export function Footer() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        Powered by{" "}
+        Thanks by{" "}
         <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
       </a>
     </footer>
