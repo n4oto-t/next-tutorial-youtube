@@ -1,52 +1,16 @@
 import Head from "next/head";
-import { useCallback, useEffect, useState } from "react";
 import { Footer } from "src/components/Footer";
 import { Header } from "src/components/Header";
 import { Main } from "src/components/Main";
+import { useBgLightBlue } from "src/hooks/useBgLightBlue";
+import { useCounter } from "src/hooks/useCounter";
+import { useInputArray } from "src/hooks/useInputArray";
+
 import styles from "src/styles/Home.module.css";
 export default function Home() {
-  const [count, setCount] = useState(1);
-  const [text, setText] = useState("");
-  const [isShow, setIsShow] = useState(true);
-  const [array, setArray] = useState([1, 2, 3]);
-
-  useEffect(() => {
-    // マウント時の動作を定義
-    document.body.style.backgroundColor = "lightblue";
-    // アンマウント時の動作を定義
-    return () => {
-      document.body.style.backgroundColor = "";
-    };
-  }, []);
-
-  const handleClick = useCallback(() => {
-    console.log(count);
-    if (count < 10) {
-      setCount((prevCount) => prevCount + 1);
-    }
-  });
-
-  const handleChange = useCallback((e) => {
-    if (e.target.value.length > 5) {
-      // alert("5文字以内にしてください");
-      return;
-    }
-    setText(e.target.value.trim());
-  }, []);
-
-  const handleDisplay = useCallback((e) => {
-    setIsShow((prevIsShow) => !prevIsShow);
-  }, []);
-
-  const handleAdd = useCallback(() => {
-    setArray((prevArray) => {
-      if (prevArray.some((item) => item === text)) {
-        return prevArray;
-      }
-      return [...prevArray, text];
-    });
-  }, [text]);
-
+  const { count, isShow, handleClick, handleDisplay } = useCounter();
+  const { text, array, handleChange, handleAdd } = useInputArray();
+  useBgLightBlue();
   return (
     <div className={styles.container}>
       <Head>
