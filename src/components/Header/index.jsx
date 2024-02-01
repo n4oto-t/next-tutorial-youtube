@@ -1,6 +1,7 @@
 import Link from "next/link";
 import classes from "src/components/Header/Header.module.css";
-export function Header() {
+
+export const Header = () => {
   return (
     <header className={classes.header}>
       {/* aタグ使ってリンク作成した場合、ページのリロードが走ってしまい描画が遅くなる */}
@@ -8,4 +9,4 @@ export function Header() {
       <Link href="/about">About</Link>
     </header>
   );
-}
+};
